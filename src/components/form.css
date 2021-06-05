@@ -1,0 +1,17 @@
+.form--container {
+    display: flex;
+    flex-direction: column;
+}
+.form__field {
+    display: flex;
+    justify-content: space-between;
+}
+.form__field label {
+    border: 1px solid black;
+    max-width: 20%;
+    flex-grow: 1;
+}
+.form__field input {
+    max-width: 80%;
+    flex-grow: 1;
+}
