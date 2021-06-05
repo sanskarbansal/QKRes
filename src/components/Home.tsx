@@ -5,9 +5,11 @@ import Dashboard from "./Dashboard";
 import Login from "./Login";
 import Register from "./Register";
 
+const emptyUser = { username: "", email: "", id: "" };
+
 export default function Home() {
     const [islogin, setIslogin] = useState(true);
-    const [user, setuser] = useState({ username: "", email: "", id: "" });
+    const [user, setuser] = useState(emptyUser);
     const { loading, error, data } = useQuery(ME);
     useEffect(() => {
         if (data && data.Me) {
@@ -18,7 +20,7 @@ export default function Home() {
     return (
         <>
             {user && user.id ? (
-                <Dashboard user={user} />
+                <Dashboard user={user} resetUser={() => setuser(emptyUser)} />
             ) : (
                 <div className="container">
                     <button style={{ margin: "0 auto" }} onClick={() => setIslogin(!islogin)}>

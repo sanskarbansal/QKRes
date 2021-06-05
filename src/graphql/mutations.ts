@@ -19,6 +19,19 @@ export const REGISTER_USER = gql`
         }
     }
 `;
+export const LOGOUT = gql`
+    mutation logout {
+        logout
+    }
+`;
+export const DELETE_POST = gql`
+    mutation deletePost($pId: String!) {
+        deletePost(postId: $pId) {
+            success
+            message
+        }
+    }
+`;
 export const CREATE_POST = gql`
     mutation createpost($title: String!) {
         createPost(title: $title) {

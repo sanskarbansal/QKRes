@@ -1,11 +1,12 @@
 import React from "react";
 import Post from "./Post";
 
-export default function PostList({ posts }: any) {
+export default function PostList({ posts, user: { id } }: any) {
+    console.log(posts);
     return (
         <div className="posts--container">
             {posts.map((post: any) => (
-                <Post post={post} key={post.id} />
+                <Post post={post} key={post.id} self={id === post.user.id} />
             ))}
         </div>
     );

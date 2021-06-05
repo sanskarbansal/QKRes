@@ -8,6 +8,7 @@ export const LOAD_POSTS = gql`
             user {
                 username
                 email
+                id
             }
             date
         }
