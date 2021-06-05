@@ -1,22 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LOGIN_USER } from "../graphql/mutations";
 import { useMutation } from "@apollo/client";
 import "./form.css";
 const initialFormData: { email: string; password: string } = { email: "", password: "" };
 export default function Login(props: any) {
     const [formdata, setformdata] = useState(initialFormData);
-    const [login, { loading, error, data }] = useMutation(LOGIN_USER, { errorPolicy: "ignore" });
+    const [login, { loading, error, data }] = useMutation(LOGIN_USER, { errorPolicy: "all" });
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        await login({ variables: { email: formdata.email, password: formdata.password } });
+        login({ variables: { email: formdata.email, password: formdata.password } });
+    };
+    useEffect(() => {
         if (error) {
             alert(error.message);
-            setformdata({ email: "", password: "" });
+            setformdata(initialFormData);
         }
-        if (data) {
-            console.log(data);
+        if (data && data.login) {
+            console.log(data.login);
+
+            setformdata(initialFormData);
+            props.onLogin(data.login);
         }
-    };
+    }, [error, data, props]);
     const handleChange = (key: any) => {
         return (event: any) => {
             setformdata({

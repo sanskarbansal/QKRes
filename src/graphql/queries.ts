@@ -19,9 +19,15 @@ export const ME = gql`
             username
             id
             email
-            posts {
-                title
-            }
         }
     }
 `;
+// export const F = gql`
+//     query {
+//         Me {
+//             username
+//             id
+//             email
+//         }
+//     }
+// `;

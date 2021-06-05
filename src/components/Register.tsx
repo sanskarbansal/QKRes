@@ -15,8 +15,17 @@ export default function Register(props: any) {
         }
     };
     useEffect(() => {
-        console.log(data);
-    }, [data]);
+        if (error) {
+            alert(error.message);
+            setformdata(initialFormData);
+        }
+        if (data && data.register) {
+            console.log(data.register);
+
+            setformdata(initialFormData);
+            // props.onLogin(data.login);
+        }
+    }, [error, data, props]);
     const handleChange = (key: any) => {
         return (event: any) => {
             setformdata({

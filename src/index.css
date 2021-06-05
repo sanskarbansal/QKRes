@@ -16,3 +16,69 @@ code {
     justify-content: center;
     flex-direction: column;
 }
+.posts--container {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-flow: column nowrap;
+    row-gap: 1rem;
+}
+.posts--container__post {
+    box-shadow: 0px 1px 6px 1px #e8e7e7;
+}
+.posts--container__post > * {
+    position: relative;
+    padding: 0px 2rem 0 2rem;
+}
+.posts--container__post > div:first-of-type {
+    /* width: 100%; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid grey;
+}
+.lazy {
+    overflow: hidden;
+
+    box-shadow: none;
+}
+.lazy > *::before {
+    content: "";
+    width: 500%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(232, 236, 240, 0.815) 30%,
+        rgba(169, 184, 197, 0.5) 38%,
+        rgba(168, 182, 193, 0.6) 41%,
+        rgba(168, 182, 193, 0.6) 50%,
+        rgba(168, 182, 193, 0.6) 50%,
+        rgba(169, 184, 197, 0.6) 51%,
+        rgba(211, 223, 232, 0.6) 57%,
+        rgba(211, 223, 232, 0.6) 80%,
+        rgba(211, 223, 232, 0.6) 80%
+    );
+    top: 0;
+    left: 0;
+    position: absolute;
+    animation: lazy 2s ease-in infinite;
+}
+@keyframes lazy {
+    from {
+        transform: translateX(-50%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+.btn {
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0.5rem 0;
+    font-weight: bolder;
+    font-size: 1.5rem;
+    background-color: rgb(45, 45, 238);
+    color: white;
+}
