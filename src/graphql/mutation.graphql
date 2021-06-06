@@ -48,3 +48,11 @@ mutation editPost($title: String!, $pid: String!) {
         date
     }
 }
+
+mutation forgotPassword($email: String!) {
+    forgetPassword(email: $email)
+}
+
+mutation changePassword($token: String!, $password: String!) {
+    changePassword(data: { token: $token, newPassword: $password })
+}
