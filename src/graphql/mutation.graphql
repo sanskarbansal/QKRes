@@ -31,6 +31,19 @@ mutation createpost($title: String!) {
         title
         user {
             username
+            email
+            id
+        }
+        date
+    }
+}
+
+mutation editPost($title: String!, $pid: String!) {
+    editPost(data: { title: $title, postId: $pid }) {
+        id
+        title
+        user {
+            id
         }
         date
     }
