@@ -30,7 +30,7 @@ export default function Home() {
                     ) : (
                         <>
                             {islogin && <Login onLogin={setuser} />}
-                            {!islogin && <Register />}
+                            {!islogin && <Register toLogin={setIslogin} />}
                         </>
                     )}
                 </div>

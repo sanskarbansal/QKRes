@@ -56,3 +56,7 @@ mutation forgotPassword($email: String!) {
 mutation changePassword($token: String!, $password: String!) {
     changePassword(data: { token: $token, newPassword: $password })
 }
+
+mutation confirmEamil($token: String!) {
+    confirmEamil(token: $token)
+}
