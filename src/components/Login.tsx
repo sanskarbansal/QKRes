@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { LOGIN_USER } from "../graphql/mutations";
-import { useMutation } from "@apollo/client";
+import { useLoginMutation } from "../generated/graphql";
 import "./form.css";
 const initialFormData: { email: string; password: string } = { email: "", password: "" };
 export default function Login(props: any) {
     const [formdata, setformdata] = useState(initialFormData);
-    const [login, { loading, error, data }] = useMutation(LOGIN_USER, { errorPolicy: "all" });
+    const [login, { loading, error, data }] = useLoginMutation({ errorPolicy: "all" });
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         login({ variables: { email: formdata.email, password: formdata.password } });

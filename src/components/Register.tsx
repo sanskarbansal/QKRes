@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { REGISTER_USER } from "../graphql/mutations";
-import { useMutation } from "@apollo/client";
+
+import { useRegisterMutation } from "../generated/graphql";
 import "./form.css";
 const initialFormData: { email: string; username: string; password: string } = { email: "", username: "", password: "" };
 export default function Register(props: any) {
     const [formdata, setformdata] = useState(initialFormData);
-    const [register, { loading, error, data }] = useMutation(REGISTER_USER, { errorPolicy: "all" });
+    const [register, { loading, error, data }] = useRegisterMutation({ errorPolicy: "all" });
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
         register({ variables: { email: formdata.email, password: formdata.password, username: formdata.username } });

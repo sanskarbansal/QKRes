@@ -1,8 +1,7 @@
 import React from "react";
-import { useMutation } from "@apollo/client";
-import { DELETE_POST } from "../graphql/mutations";
+import { useDeletePostMutation } from "../generated/graphql";
 export default function Post({ post, lazy, self }: any) {
-    const [deletePost, { loading, error, data }] = useMutation(DELETE_POST);
+    const [deletePost, { data }] = useDeletePostMutation();
     const handleDelete = async () => {
         await deletePost({ variables: { pId: post.id } });
         console.log(data);

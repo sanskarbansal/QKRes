@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useMutation, useQuery } from "@apollo/client";
-import { CREATE_POST, LOGOUT } from "../graphql/mutations";
-import { LOAD_POSTS } from "../graphql/queries";
 import PostList from "./PostList";
 import Post from "./Post";
+import { useCreatepostMutation, useLoadPostsQuery, useLogoutMutation } from "../generated/graphql";
 
 export default function Dashboard({ user, resetUser }: { resetUser(): void; user: { email: String; username: String; id: String } }) {
     const [title, settitle] = useState("");
     const { username } = user;
-    const [createPost, { loading: postCreateLoading, error: postCreateError, data: postCreatedData }] = useMutation(CREATE_POST, { errorPolicy: "all" });
-    const [logout] = useMutation(LOGOUT, { errorPolicy: "all" });
-    const { loading: postFetchLoading, error: postFetchError, data: postFetchData } = useQuery(LOAD_POSTS);
+    const [createPost, { loading: postCreateLoading, error: postCreateError, data: postCreatedData }] = useCreatepostMutation();
+    const [logout] = useLogoutMutation();
+    const { loading: postFetchLoading, error: postFetchError, data: postFetchData } = useLoadPostsQuery();
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
         createPost({ variables: { title } });
@@ -53,7 +51,7 @@ export default function Dashboard({ user, resetUser }: { resetUser(): void; user
                     <Post lazy />
                 </div>
             ) : (
-                <PostList user={user} posts={postFetchData.getPosts} />
+                <PostList user={user} posts={postFetchData?.getPosts} />
             )}
         </div>
     );

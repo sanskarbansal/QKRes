@@ -1,0 +1,19 @@
+query loadPosts {
+    getPosts {
+        id
+        title
+        user {
+            username
+            email
+            id
+        }
+        date
+    }
+}
+query ME {
+    Me {
+        username
+        id
+        email
+    }
+}
